@@ -1,0 +1,46 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block auth_content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Welcome to Car Detailing System</h4>
+            </div>
+            <div class="card-body">
+                <div class="text-center mb-4">
+                    <i class="fas fa-car fa-4x mb-3 text-primary"></i>
+                    <h2>Professional Car Detailing Management</h2>
+                    <p class="lead">Streamline your car detailing business operations</p>
+                </div>
+                
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg">
+                        <i class="fas fa-sign-in-alt me-2"></i> Login to System
+                    </a>
+                </div>
+                
+                <div class="row mt-5">
+                    <div class="col-md-4 text-center">
+                        <i class="fas fa-users fa-3x mb-3 text-secondary"></i>
+                        <h4>Customer Management</h4>
+                        <p>Keep track of all your customers and their vehicles</p>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <i class="fas fa-calendar-check fa-3x mb-3 text-secondary"></i>
+                        <h4>Appointment Scheduling</h4>
+                        <p>Manage appointments and booking calendar</p>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <i class="fas fa-tools fa-3x mb-3 text-secondary"></i>
+                        <h4>Service Management</h4>
+                        <p>Create and manage your service packages</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
