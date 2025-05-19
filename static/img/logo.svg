@@ -1,0 +1,22 @@
+<svg width="340" height="110" viewBox="0 0 340 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Car Silhouette -->
+  <linearGradient id="carGradient" x1="0" y1="0" x2="340" y2="0" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#00c6fb"/>
+    <stop offset="1" stop-color="#005bea"/>
+  </linearGradient>
+  <path d="M30 40 Q80 10 170 25 Q260 40 310 30" stroke="url(#carGradient)" stroke-width="5" fill="none"/>
+  <ellipse cx="60" cy="44" rx="7" ry="2" fill="#005bea"/>
+  <ellipse cx="280" cy="38" rx="7" ry="2" fill="#005bea"/>
+  <!-- JAGUAR Text with Gradient -->
+  <defs>
+    <linearGradient id="textGradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#00c6fb"/>
+      <stop offset="100%" stop-color="#005bea"/>
+    </linearGradient>
+  </defs>
+  <text x="40" y="80" font-family="Arial Black, Arial, sans-serif" font-size="48" font-weight="bold" fill="url(#textGradient)" letter-spacing="4">JAGUAR</text>
+  <!-- Reflection -->
+  <text x="40" y="100" font-family="Arial Black, Arial, sans-serif" font-size="48" font-weight="bold" fill="url(#textGradient)" letter-spacing="4" opacity="0.2" transform="scale(1,-1) translate(0,-180)">JAGUAR</text>
+  <!-- Subtitle -->
+  <text x="30" y="108" font-family="Arial Black, Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff" letter-spacing="2">AUTO DETAILING &amp; PAINTING SERVICES</text>
+</svg> 

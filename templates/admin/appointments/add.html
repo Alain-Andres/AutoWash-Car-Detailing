@@ -1,0 +1,119 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Schedule Appointment{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Schedule New Appointment</h2>
+    <a href="{{ url_for('appointments') }}" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Back to Appointments
+    </a>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <form method="post" action="{{ url_for('add_appointment') }}">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="customer_id" class="form-label">Customer</label>
+                    <select class="form-select" id="customer_id" name="customer_id" required>
+                        <option value="">-- Select Customer --</option>
+                        {% for customer in customers %}
+                        <option value="{{ customer.id }}">{{ customer.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="vehicle_id" class="form-label">Vehicle</label>
+                    <select class="form-select" id="vehicle_id" name="vehicle_id" required disabled>
+                        <option value="">-- Select Vehicle --</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="service_id" class="form-label">Service Package</label>
+                    <select class="form-select" id="service_id" name="service_id" required>
+                        <option value="">-- Select Service --</option>
+                        {% for service in services %}
+                        <option value="{{ service.id }}">{{ service.name }} (₱{{ "%.2f"|format(service.price|float) }})</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="appointment_date" class="form-label">Date</label>
+                    <input type="date" class="form-control" id="appointment_date" name="appointment_date" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="appointment_time" class="form-label">Time</label>
+                    <input type="time" class="form-control" id="appointment_time" name="appointment_time" required>
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="notes" class="form-label">Notes</label>
+                <textarea class="form-control" id="notes" name="notes" rows="3"></textarea>
+            </div>
+            
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button type="submit" class="btn btn-primary">Schedule Appointment</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    // Date picker initialization
+    flatpickr("#appointment_date", {
+        minDate: "today",
+        dateFormat: "Y-m-d"
+    });
+    
+    // Handle customer selection and load vehicles
+    document.getElementById('customer_id').addEventListener('change', function() {
+        const customerId = this.value;
+        const vehicleSelect = document.getElementById('vehicle_id');
+        
+        if (customerId) {
+            // Enable vehicle dropdown
+            vehicleSelect.disabled = false;
+            
+            // Clear current options except the first one
+            while (vehicleSelect.options.length > 1) {
+                vehicleSelect.remove(1);
+            }
+            
+            // Fetch vehicles for this customer
+            fetch(`/get_customer_vehicles/${customerId}`)
+                .then(response => response.json())
+                .then(data => {
+                    data.vehicles.forEach(vehicle => {
+                        const option = document.createElement('option');
+                        option.value = vehicle.id;
+                        option.textContent = `${vehicle.make} ${vehicle.model} (${vehicle.license_plate})`;
+                        vehicleSelect.appendChild(option);
+                    });
+                });
+        } else {
+            // Disable vehicle dropdown if no customer is selected
+            vehicleSelect.disabled = true;
+            
+            // Clear options except the first one
+            while (vehicleSelect.options.length > 1) {
+                vehicleSelect.remove(1);
+            }
+        }
+    });
+</script>
+{% endblock %}
