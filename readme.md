@@ -170,7 +170,7 @@ The system has a default admin account:
 
 ## Contributors
 
-- AutoWash
+- Jaguar Car Detailing
 
 ## Acknowledgements
 

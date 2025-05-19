@@ -174,22 +174,45 @@ a:focus {
 }
 
 .top-bar .logo {
-    text-align: left;
-    overflow: hidden;
+    display: flex !important;
+    align-items: center !important;
+    gap: 1.2em !important;
 }
 
-.top-bar .logo h1 {
-    margin: -4px 0 0 0;
-    color: #E81C2E;
-    font-size: 50px;
-    line-height: 50px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    font-style: italic;
-}
-
+.top-bar .logo h1,
 .top-bar .logo h1 span {
-    color: #202C45;
+  all: unset;
+}
+
+.top-bar .logo .logo-title {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 800;
+  font-size: 1.7rem;
+  margin: 0;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 0.2em;
+  white-space: nowrap;
+}
+
+.top-bar .logo .logo-jaguar {
+  color: #E81C2E;
+  font-style: italic;
+}
+
+.top-bar .logo .logo-car,
+.top-bar .logo .logo-detailing {
+  color: #202C45;
+  font-style: italic;
+}
+
+.top-bar .logo .logo-car {
+  margin-left: 0.1em;
+}
+
+.top-bar .logo .logo-detailing {
+  margin-left: 0.1em;
 }
 
 .top-bar .logo img {
@@ -2074,4 +2097,34 @@ a:focus {
 
 .footer .copyright p a:hover {
     color: #ffffff;
+}
+
+.logo-title {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 800;
+  font-size: 2.2rem;
+  margin: 0;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+}
+
+.logo-jaguar {
+  color: #E81C2E;      /* Red */
+  font-style: italic;
+}
+
+.logo-car,
+.logo-detailing {
+  color: #202C45;      /* Dark blue */
+  font-style: italic;
+}
+
+.logo-car {
+  margin-left: 0.1em;
+}
+
+.logo-detailing {
+  margin-left: 0.1em;
 }
